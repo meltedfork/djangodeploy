@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Just One Wish</title>
+</head>
+<body>
+    <h3><a href='/success'>Home</a>  <a href='/logout'>Logout</a></h3>
+    <h2>{{wish.item}}</h2>
+    <p>Users who added this product/item under their wish list:</p>
+    {% for user in users %}
+    <ul>
+        <li>{{user.name}}</li>
+    </ul>
+    {% endfor %}
+    <ul>
+        <li>{{creator}}</li>
+    </ul>
+</body>
+</html>

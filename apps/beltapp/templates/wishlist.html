@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Wish Lists</title>
+</head>
+
+<body>
+    <h1>Hello, {{user.name}}!</h1>
+    <a href='logout'>Logout</a>
+    <table>
+        <strong>
+            <p>Your Wish List</p>
+        </strong>
+        <thead>
+            <tr>
+                <td>Item</td>
+                <td>Added By</td>
+                <td>Date Added</td>
+                <td>Action</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for favorite in favorite %}
+            <tr>
+                <td><a href='/{{favorite.id}}/show'>{{favorite.item}}</a></td>
+                <td>{{favorite.created_by.name}}</td>
+                <td>{{favorite.created_at.date}}</td>
+
+                <td>
+                    <a href='/{{favorite.id}}/popback'>Remove from my Wishlist</a>
+                </td>
+                <td>
+                    <a href='/{{favorite.id}}/remove'>Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+            {% for mywish in mywish %}
+            <tr>
+                <td><a href='/{{mywish.id}}/show'>{{mywish.item}}</a></td>
+                <td>{{mywish.created_by.name}}</td>
+                <td>{{mywish.created_at.date}}</td>
+
+                <td>
+                    <a href='/{{mywish.id}}/popback'>Remove from my Wishlist</a>
+                </td>
+                <td>
+                    <a href='/{{mywish.id}}/remove'>Delete</a>
+                </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+    </ul>
+    {% endif %}
+    <table>
+        <strong>
+            <p>Other Users' Wish List</p>
+        </strong>
+        <thead>
+            <tr>
+                <td>Item</td>
+                <td>Added By</td>
+                <td>Date Added</td>
+                <td>Action</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td><a href='/{{item.id}}/show'>{{item.item}}</a></td>
+                <td>{{item.created_by.name}}</td>
+                <td>{{item.created_at.date}}</td>
+                <td>
+                    <a href='/{{item.id}}/favorite'>Add to my Wishlist</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href='new'>Add an Item</a>
+</body>
+
+</html>
